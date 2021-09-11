@@ -7,7 +7,7 @@ import json
 database_name = "casting_agency"
 user = os.environ['POSTGRES_USER']
 password = os.environ['POSTGRES_PASSWORD']
-database_path = "postgresql://{}:{}@{}/{}".format(user, password, 'localhost:5432', database_name)
+database_path = 'postgres://sorhzmrrvxkwvz:95680025528f04695f217ec8430ded6dbe20b92d7292127d940d9637367be109@ec2-52-7-159-155.compute-1.amazonaws.com:5432/dahurhsikq93gj'#"postgresql://{}:{}@{}/{}".format(user, password, 'localhost:5432', database_name)
 
 db = SQLAlchemy()
 
