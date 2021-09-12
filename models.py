@@ -7,7 +7,7 @@ import json
 database_name = "casting_agency"
 user = os.environ['POSTGRES_USER']
 password = os.environ['POSTGRES_PASSWORD']
-database_path = 'postgresql://sorhzmrrvxkwvz:95680025528f04695f217ec8430ded6dbe20b92d7292127d940d9637367be109@ec2-52-7-159-155.compute-1.amazonaws.com:5432/dahurhsikq93gj'#"postgresql://{}:{}@{}/{}".format(user, password, 'localhost:5432', database_name)
+database_path = 'postgres://sorhzmrrvxkwvz:95680025528f04695f217ec8430ded6dbe20b92d7292127d940d9637367be109@ec2-52-7-159-155.compute-1.amazonaws.com:5432/dahurhsikq93gj'#"postgresql://{}:{}@{}/{}".format(user, password, 'localhost:5432', database_name)
 
 db = SQLAlchemy()
 
@@ -16,7 +16,7 @@ def setup_db(app, database_path=database_path):
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     db.app = app
     db.init_app(app)
-    db.create_all()
+    db_drop_and_create_all()
 
 def db_drop_and_create_all():
     db.drop_all()
@@ -50,6 +50,7 @@ class Movie(db.Model):
     
     def format(self):
         return {
+            'id':self.id,
             'title': self.title,
             'release date': self.release_date}
         
@@ -82,6 +83,7 @@ class Actor(db.Model):
     
     def format(self):
         return {
+            'id': self.id,
             'name': self.name,
             'age': self.age,
             'gender': self.gender
